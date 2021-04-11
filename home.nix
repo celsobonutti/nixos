@@ -6,6 +6,7 @@
     ./programs/vim.nix
     ./programs/fish.nix
     ./programs/kitty.nix
+    ./services/stalonetray.nix
   ];
 
   home.username = "dokkora";
@@ -45,6 +46,9 @@
     flameshot
     plex
     tdesktop
+    playerctl
+    stalonetray
+    evince
   ];
 
   programs.firefox = {

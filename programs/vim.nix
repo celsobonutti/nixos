@@ -28,6 +28,7 @@
       vim-elixir
       fzfWrapper
       fzf-vim
+      LanguageClient-neovim
     ];
 
     extraConfig = ''
@@ -48,21 +49,45 @@
 
       command Fmt :call CocAction('format')
 
+      nnoremap J 20j
+      vnoremap J 20j
+      nnoremap K 20k
+      vnoremap K 20k
       nnoremap <C-J> <C-W>j
       nnoremap <C-K> <C-W>k
       nnoremap <C-H> <C-W>h
       nnoremap <C-L> <C-W>l
-      nnoremap <nowait><expr> <PAGEDOWN> coc#float#has_scroll() ? coc#float#scroll(1) : "\<PAGEDOWN>"
-      nnoremap <nowait><expr> <PAGEUP> coc#float#has_scroll() ? coc#float#scroll(0) : "\<PAGEUP>"
-      inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-      inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
       nnoremap x "_x
       vnoremap x "_x
-      noremap q b
+      nnoremap L :tabNext<CR>
+      nnoremap H :tabprevious<CR>
+      vnoremap L :tabNext<CR>
+      vnoremap H :tabprevious<CR>
+      nnoremap q b
+      inoremap q b
+      inoremap jj <Esc>
+            
 
       map <C-p> :GFiles --cached --others --exclude-standard<CR>
       map <C-_> :Ag<CR>
       map <C-n> :NERDTreeToggle<CR>
+      map <Leader>] :NERDTreeToggle<CR>
+
+      nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+      map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
+      map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
+      map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
+      map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
+      map <Leader>lb :call LanguageClient#textDocument_references()<CR>
+      map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+      map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
+
+      nnoremap <nowait><expr> <PAGEDOWN> coc#float#has_scroll() ? coc#float#scroll(1) : "\<PAGEDOWN>"
+      nnoremap <nowait><expr> <PAGEUP> coc#float#has_scroll() ? coc#float#scroll(0) : "\<PAGEUP>"
+      inoremap <nowait><expr> <C-J> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<UP>"
+      inoremap <nowait><expr> <C-K> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<DOWN>"
+
+      let g:LanguageClient_serverCommands = { 'haskell': ['haskell-language-server-wrapper', '--lsp'] }
 
       let g:closetag_filenames = "*.html,*.jsx,*.tsx,*.vue,*.xhml,*.xml"
       let g:closetag_regions = {
