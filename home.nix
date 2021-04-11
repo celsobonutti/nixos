@@ -41,6 +41,10 @@
     elmPackages.elm
     obinskit
     vscode
+    leiningen
+    flameshot
+    plex
+    tdesktop
   ];
 
   programs.firefox = {

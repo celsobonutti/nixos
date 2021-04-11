@@ -15,6 +15,9 @@
     };
 
     plugins = with pkgs.vimPlugins; [
+      molokai
+      lightline-vim
+      vim-gitgutter
       vim-plug
       vim-javascript
       coc-nvim
@@ -31,15 +34,15 @@
       set softtabstop=0
       set smarttab
       set autoindent
-      
+
+      colorscheme molokai
+
       let g:elm_format_autosave = 0 
       let g:vim_vue_plugin_use_typescript = 1
       let g:vim_vue_plugin_highlight_vue_keyword = 1
       let NERDTreeShowLineNumbers=1
 
       autocmd FileType nerdtree setlocal relativenumber
-
-      color molokai 
 
       syntax on
 
@@ -76,8 +79,6 @@
       call plug#begin('~/.vim/plugged')
 
         Plug 'rescript-lang/vim-rescript', {'tag': 'v1.3.0'}
-
-        Plug 'preservim/nerdtree'
 
         Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'npm install'}
 
