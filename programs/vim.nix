@@ -29,6 +29,7 @@
       fzfWrapper
       fzf-vim
       LanguageClient-neovim
+      vim-nix
     ];
 
     extraConfig = ''
@@ -59,13 +60,18 @@
       nnoremap <C-L> <C-W>l
       nnoremap x "_x
       vnoremap x "_x
-      nnoremap L :tabNext<CR>
+      nnoremap L :tabnext<CR>
       nnoremap H :tabprevious<CR>
-      vnoremap L :tabNext<CR>
+      vnoremap L :tabnext<CR>
       vnoremap H :tabprevious<CR>
       nnoremap q b
-      inoremap q b
+      vnoremap q b
       inoremap jj <Esc>
+      nnoremap T :tabnew<CR>
+      vnoremap T :tabnew<CR>
+      nnoremap W :tabclose<CR>
+      vnoremap W :tabclose<CR>
+      inoremap <nowait><expr> <C-J> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<DOWN>"
             
 
       map <C-p> :GFiles --cached --others --exclude-standard<CR>
@@ -84,8 +90,8 @@
 
       nnoremap <nowait><expr> <PAGEDOWN> coc#float#has_scroll() ? coc#float#scroll(1) : "\<PAGEDOWN>"
       nnoremap <nowait><expr> <PAGEUP> coc#float#has_scroll() ? coc#float#scroll(0) : "\<PAGEUP>"
-      inoremap <nowait><expr> <C-J> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<UP>"
-      inoremap <nowait><expr> <C-K> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<DOWN>"
+      inoremap <nowait><expr> <C-J> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<DOWN>"
+      inoremap <nowait><expr> <C-K> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<UP>"
 
       let g:LanguageClient_serverCommands = { 'haskell': ['haskell-language-server-wrapper', '--lsp'] }
 

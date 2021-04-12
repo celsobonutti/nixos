@@ -5,7 +5,6 @@
     ./programs/git.nix
     ./programs/vim.nix
     ./programs/fish.nix
-    ./programs/kitty.nix
     ./services/stalonetray.nix
   ];
 
@@ -25,7 +24,6 @@
     fish
     ranger
     arandr
-    kitty
     iosevka
     nodejs
     git
@@ -49,6 +47,11 @@
     playerctl
     stalonetray
     evince
+    silver-searcher
+    alacritty
+    fd
+    bat
+    exa
   ];
 
   programs.firefox = {
