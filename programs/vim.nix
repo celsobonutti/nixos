@@ -4,16 +4,6 @@
   programs.vim = {
     enable = true;
 
-    settings = {
-      number = true;
-      relativenumber = true;
-      tabstop = 8;
-      expandtab = true;
-      shiftwidth = 2;
-      ignorecase = true;
-      smartcase = true;
-    };
-
     plugins = with pkgs.vimPlugins; [
       molokai
       lightline-vim
@@ -21,7 +11,6 @@
       vim-plug
       vim-javascript
       coc-nvim
-      nerdtree
       vim-closetag
       vim-jsx-pretty
       yats-vim
@@ -36,48 +25,45 @@
       set softtabstop=0
       set smarttab
       set autoindent
-
-      colorscheme molokai
+      set number
+      set relativenumber
+      set tabstop=8
+      set expandtab
+      set shiftwidth=2
+      set ignorecase
+      set smartcase
 
       let g:elm_format_autosave = 0 
       let g:vim_vue_plugin_use_typescript = 1
       let g:vim_vue_plugin_highlight_vue_keyword = 1
-      let NERDTreeShowLineNumbers=1
-
-      autocmd FileType nerdtree setlocal relativenumber
-
+      let g:rust_recommended_style = 0 
       syntax on
 
       command Fmt :call CocAction('format')
 
-      nnoremap J 20j
-      vnoremap J 20j
-      nnoremap K 20k
-      vnoremap K 20k
-      nnoremap <C-J> <C-W>j
-      nnoremap <C-K> <C-W>k
-      nnoremap <C-H> <C-W>h
-      nnoremap <C-L> <C-W>l
-      nnoremap x "_x
-      vnoremap x "_x
-      nnoremap L :tabnext<CR>
-      nnoremap H :tabprevious<CR>
-      vnoremap L :tabnext<CR>
-      vnoremap H :tabprevious<CR>
-      nnoremap q b
-      vnoremap q b
+      noremap J 20j
+      noremap K 20k
+      noremap <C-L> <C-W>l
+      noremap <C-H> <C-W>h
+      noremap <C-J> <C-W>j
+      noremap <C-K> <C-W>k
+      noremap x "_x
+      noremap X "_dd
+      noremap L :tabnext<CR>
+      noremap H :tabprevious<CR>
+      noremap q b
+      tnoremap <C-L> <C-W>l
+      tnoremap <C-H> <C-W>h
+      tnoremap <C-J> <C-W>j
+      tnoremap <C-K> <C-W>k
       inoremap jj <Esc>
-      nnoremap T :tabnew<CR>
-      vnoremap T :tabnew<CR>
-      nnoremap W :tabclose<CR>
-      vnoremap W :tabclose<CR>
-      inoremap <nowait><expr> <C-J> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<DOWN>"
-            
+      noremap T :tabnew<CR>
+      noremap W :tabclose<CR>
 
       map <C-p> :GFiles --cached --others --exclude-standard<CR>
       map <C-_> :Ag<CR>
-      map <C-n> :NERDTreeToggle<CR>
-      map <Leader>] :NERDTreeToggle<CR>
+      map <C-n> :CocCommand explorer<CR>
+      map <Leader>] :CocCommand explorer<CR>
 
       nnoremap <F5> :call LanguageClient_contextMenu()<CR>
       map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
@@ -88,10 +74,10 @@
       map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
       map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 
-      nnoremap <nowait><expr> <PAGEDOWN> coc#float#has_scroll() ? coc#float#scroll(1) : "\<PAGEDOWN>"
-      nnoremap <nowait><expr> <PAGEUP> coc#float#has_scroll() ? coc#float#scroll(0) : "\<PAGEUP>"
-      inoremap <nowait><expr> <C-J> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<DOWN>"
-      inoremap <nowait><expr> <C-K> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<UP>"
+      noremap <nowait><expr> <PAGEDOWN> coc#float#has_scroll() ? coc#float#scroll(1) : "\<PAGEDOWN>"
+      noremap <nowait><expr> <PAGEUP> coc#float#has_scroll() ? coc#float#scroll(0) : "\<PAGEUP>"
+      noremap <nowait><expr> <C-J> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<C-W>j"
+      noremap <nowait><expr> <C-K> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<C-W>k"
 
       let g:LanguageClient_serverCommands = { 'haskell': ['haskell-language-server-wrapper', '--lsp'] }
 
@@ -107,6 +93,9 @@
 
       let g:closetag_close_shortcut = '<leader>>'
 
+      set dir=$HOME/.vim/tmp/swap
+      if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
+
       call plug#begin('~/.vim/plugged')
 
         Plug 'rescript-lang/vim-rescript', {'tag': 'v1.3.0'}
@@ -117,11 +106,13 @@
 
         Plug 'AndrewRadev/tagalong.vim'
 
-        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+        Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
-        Plug 'junegunn/fzf.vim'
+        Plug 'dracula/vim', { 'as': 'dracula' }
 
       call plug#end()
+
+      colorscheme dracula 
     '';
   };
 }

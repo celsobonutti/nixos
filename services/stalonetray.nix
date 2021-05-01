@@ -16,6 +16,7 @@
       no_shrink = true; 
       skip_taskbar = true;
       window_strut = "top";
+      kludges = "fix_window_pos,force_icons_size";
     };
   };
 }

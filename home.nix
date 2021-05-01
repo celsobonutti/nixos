@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
-    ./programs/git.nix
+    ./programs/git.nix 
     ./programs/vim.nix
     ./programs/fish.nix
     ./services/stalonetray.nix
@@ -12,24 +12,25 @@
   home.homeDirectory = "/home/dokkora";
   home.stateVersion = "21.03";
 
-  nixpkgs.config.allowUnfree = true;
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-3.1.13"
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "plexmediaserver"
+    "ngrok"
+    "vscode"
+    "slack"
   ];
 
   home.packages = with pkgs; [
-    htop
+    bottom
     fortune
     fish
     ranger
-    arandr
-    iosevka
+    alacritty
     nodejs
     git
     haskellPackages.haskell-language-server
-    haskellPackages.ghc
     haskellPackages.stack
+    haskellPackages.ghc
+    haskellPackages.cabal-install
     xmobar
     exercism
     pavucontrol
@@ -38,21 +39,52 @@
     cmake
     gcc
     elmPackages.elm
-    obinskit
-    vscode
     leiningen
     flameshot
     plex
     tdesktop
     playerctl
     stalonetray
-    evince
     silver-searcher
-    alacritty
     fd
     bat
     exa
+    xorg.libXScrnSaver
+    wget
+    ngrok
+    fzf
+    cargo-watch
+    vscode
+    clisp
+    transmission-qt
+    ripgrep
+    slack
+    nodePackages.prettier
+    niv
+    zlib
+    gimp
+    python39
+    racket
+    brave
+    gnumake
+    evince
   ];
+
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    }))
+  ];
+
+  services.emacs = {
+    package = pkgs.emacsGcc;
+    enable = true;
+  };
+
+  programs.emacs = {
+    enable = true;
+    extraPackages = (epkgs: [ epkgs.vterm ] );
+  };
 
   programs.firefox = {
     enable = true;
@@ -61,6 +93,9 @@
         settings = {
           "general.smoothScroll" = false;
         };
+        userChrome = ''
+          #contentAreaContextMenu{ margin: 25px }
+        '';
       };
     };
   };
