@@ -98,8 +98,6 @@
 
       call plug#begin('~/.vim/plugged')
 
-        Plug 'rescript-lang/vim-rescript', {'tag': 'v1.3.0'}
-
         Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'npm install'}
 
         Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
@@ -109,6 +107,8 @@
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
         Plug 'dracula/vim', { 'as': 'dracula' }
+
+        Plug 'rescript-lang/vim-rescript'
 
       call plug#end()
 

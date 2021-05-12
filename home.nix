@@ -16,7 +16,6 @@
     "plexmediaserver"
     "ngrok"
     "vscode"
-    "slack"
   ];
 
   home.packages = with pkgs; [
@@ -25,8 +24,8 @@
     fish
     ranger
     alacritty
-    nodejs
     git
+    nodejs-16_x
     haskellPackages.haskell-language-server
     haskellPackages.stack
     haskellPackages.ghc
@@ -54,11 +53,9 @@
     ngrok
     fzf
     cargo-watch
-    vscode
     clisp
     transmission-qt
     ripgrep
-    slack
     nodePackages.prettier
     niv
     zlib
@@ -68,6 +65,11 @@
     brave
     gnumake
     evince
+    elixir
+    vscode
+    nixfmt
+    html-tidy
+    pandoc
   ];
 
   nixpkgs.overlays = [
@@ -77,7 +79,7 @@
   ];
 
   services.emacs = {
-    package = pkgs.emacsGcc;
+    package = pkgs.emacsGit;
     enable = true;
   };
 

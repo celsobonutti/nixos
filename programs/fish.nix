@@ -12,6 +12,7 @@
       set PATH $HOME/.cargo/bin $PATH
       set PATH $HOME/zls/zig-cache/bin $PATH
       set PATH $HOME/.emacs.d/bin $PATH
+      set PATH $HOME/result/bin $PATH
 
       alias hm="home-manager switch"
       alias vhm="vim ~/.config/nixpkgs/home.nix"
@@ -20,6 +21,7 @@
       alias ls=exa
       alias grep=ag
       alias htop=btm
+      alias cdg="cd (git rev-parse --show-toplevel)"
 
       source $HOME/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
     '';
