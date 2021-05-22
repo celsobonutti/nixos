@@ -7,12 +7,13 @@
       set XDG_DATA_DIRS /usr/share
       set VISUAL vim
       set EDITOR vim
+      set AGDA_DIR ~/.agda
 
       set PATH $HOME/.local/bin $PATH
       set PATH $HOME/.cargo/bin $PATH
       set PATH $HOME/zls/zig-cache/bin $PATH
       set PATH $HOME/.emacs.d/bin $PATH
-      set PATH $HOME/result/bin $PATH
+      set PATH $HOME/bin $PATH
 
       alias hm="home-manager switch"
       alias vhm="vim ~/.config/nixpkgs/home.nix"
