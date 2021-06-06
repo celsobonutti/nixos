@@ -13,7 +13,6 @@
       set PATH $HOME/.cargo/bin $PATH
       set PATH $HOME/zls/zig-cache/bin $PATH
       set PATH $HOME/.emacs.d/bin $PATH
-      set PATH $HOME/bin $PATH
 
       alias hm="home-manager switch"
       alias vhm="vim ~/.config/nixpkgs/home.nix"

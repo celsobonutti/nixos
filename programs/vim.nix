@@ -37,47 +37,32 @@
       let g:vim_vue_plugin_use_typescript = 1
       let g:vim_vue_plugin_highlight_vue_keyword = 1
       let g:rust_recommended_style = 0 
+      let mapleader = " "
       syntax on
 
       command Fmt :call CocAction('format')
 
-      noremap J 20j
-      noremap K 20k
-      noremap <C-L> <C-W>l
-      noremap <C-H> <C-W>h
-      noremap <C-J> <C-W>j
-      noremap <C-K> <C-W>k
+      noremap <C-J> 20j
+      noremap <C-K> 20k
+      noremap <leader>wl <C-W>l
+      noremap <leader>wh <C-W>h
+      noremap <leader>wj <C-W>j
+      noremap <leader>wk <C-W>k
       noremap x "_x
       noremap X "_dd
       noremap L :tabnext<CR>
       noremap H :tabprevious<CR>
       noremap q b
-      tnoremap <C-L> <C-W>l
-      tnoremap <C-H> <C-W>h
-      tnoremap <C-J> <C-W>j
-      tnoremap <C-K> <C-W>k
       inoremap jj <Esc>
       noremap T :tabnew<CR>
       noremap W :tabclose<CR>
 
-      map <C-p> :GFiles --cached --others --exclude-standard<CR>
-      map <C-_> :Ag<CR>
-      map <C-n> :CocCommand explorer<CR>
-      map <Leader>] :CocCommand explorer<CR>
-
-      nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-      map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
-      map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
-      map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
-      map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
-      map <Leader>lb :call LanguageClient#textDocument_references()<CR>
-      map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
-      map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
+      map <leader><leader> :GFiles --cached --others --exclude-standard<CR>
+      map <leader>_ :Ag<CR>
+      map <leader>op :CocCommand explorer<CR>
 
       noremap <nowait><expr> <PAGEDOWN> coc#float#has_scroll() ? coc#float#scroll(1) : "\<PAGEDOWN>"
       noremap <nowait><expr> <PAGEUP> coc#float#has_scroll() ? coc#float#scroll(0) : "\<PAGEUP>"
-      noremap <nowait><expr> <C-J> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<C-W>j"
-      noremap <nowait><expr> <C-K> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<C-W>k"
 
       let g:LanguageClient_serverCommands = { 'haskell': ['haskell-language-server-wrapper', '--lsp'] }
 
